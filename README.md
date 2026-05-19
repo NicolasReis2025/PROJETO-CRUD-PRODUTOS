@@ -52,27 +52,5 @@ pip install -r requirements.txt
 python main.py
 
 
-### Estrutura do projeto
-
-PROJETO-CRUD-PRODUTOS/
-├── Crud/                     # Operações CRUD
-│   ├── Adicionar.py
-│   ├── Atualizar.py
-│   ├── Buscar.py
-│   ├── Deletar.py
-│   └── Listar.py
-├── Database/                 # Conexão com o banco
-│   ├── conexao.py
-│   └── dados.sql
-├── Relatorio/                # Relatórios analíticos
-│   └── DadosAnalisticos.py
-├── menus.py                  # Menu principal
-├── main.py                   # Ponto de entrada
-├── requirements.txt          # Dependências
-├── .env                      # Credenciais (não versionado)
-├── .gitignore                # Arquivos ignorados pelo Git
-└── README.md                 # Este arquivo
-
-
 ### Autor
-Nicolas Reis – GitHub – nicolas.reis2024@gmail.com
+Nicolas Reis – GitHub – nicolas.reeis2024@gmail.com
