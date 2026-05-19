@@ -53,7 +53,7 @@ def deletarProduto():
                     except ValueError:
                         print("\nEntrada inválida. Tente novamente!")
     except Error as e:
-        print(f"\nErro ao conecatar no banco de dados: {e}")
+        print(f"\nErro ao conectar no banco de dados: {e}")
 
     finally:
         db.desconectar(conexao_sql, cursor)

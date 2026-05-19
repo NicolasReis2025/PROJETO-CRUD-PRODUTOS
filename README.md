@@ -36,3 +36,47 @@ Sistema de gerenciamento de produtos (CRUD completo) desenvolvido em Python com 
 ```bash
 git clone https://github.com/NicolasReis2025/PROJETO-CRUD-PRODUTOS.git
 cd PROJETO-CRUD-PRODUTOS
+
+### 2. Crie um ambiente virtual (recomendado)
+```bash
+python -m venv venv
+
+### 3. Instale as dependências
+```bash
+pip install -r requirements.txt
+
+### 4. Configure o banco de dados
+
+### 5. Configure as variáveis de ambiente
+
+### 6. Execute o programa
+```bash
+python main.py
+
+
+### Estrutura do projeto
+```bash
+
+PROJETO-CRUD-PRODUTOS/
+├── Crud/                     # Operações CRUD
+│   ├── Adicionar.py
+│   ├── Atualizar.py
+│   ├── Buscar.py
+│   ├── Deletar.py
+│   └── Listar.py
+├── Database/                 # Conexão com o banco
+│   ├── conexao.py
+│   └── dados.sql
+├── Relatorio/                # Relatórios analíticos
+│   └── DadosAnalisticos.py
+├── menus.py                  # Menu principal
+├── main.py                   # Ponto de entrada
+├── requirements.txt          # Dependências
+├── .env                      # Credenciais (não versionado)
+├── .gitignore                # Arquivos ignorados pelo Git
+└── README.md                 # Este arquivo
+
+
+### Autor
+```bash
+Nicolas Reis – GitHub – nicolas.reis2024@gmail.com
