@@ -34,5 +34,5 @@ Sistema de gerenciamento de produtos (CRUD completo) desenvolvido em Python com 
 ### 1. Clone ou baixe o projeto
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/NicolasReis2025/PROJETO-CRUD-PRODUTOS.git
+cd PROJETO-CRUD-PRODUTOS
