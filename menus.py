@@ -2,9 +2,11 @@ from Crud import Adicionar, Atualizar, Buscar, Deletar, Listar
 from Relatorio import DadosAnalisticos
 import time
 from Auditoria import menuAuditoria as auditoria
+from Auditoria import auth
 
 def menuInicial():
     while True:
+        print("\n-=-=-=- MENU INICIAL -=-=-=-\n")
         print("[1] Menu principal")
         print("[2] Auditoria")
         print("[3] Sair")
@@ -15,6 +17,9 @@ def menuInicial():
                     menuPrincipal()
 
                 case 2:
+                    if not auth.verificar_acesso():
+                        return
+                    
                     print("Entrando no menu principal....")
                     time.sleep(1.5)
                     auditoria.menuAuditoria()
@@ -52,9 +57,7 @@ def menuPrincipal():
             case 5:
                 Listar.listarProdutos()
             case 6:
-                DadosAnalisticos.menuRelatorio()
-            case 7:
-                print("\nPrograma encerrando....")
+                print("\nRetornando....")
                 time.sleep(1.5)
                 return
             case _:
@@ -67,7 +70,6 @@ def mostrarOpcoes():
         "\n[3] Buscar produto"
         "\n[4] Deletar produto"
         "\n[5] Listar produto" 
-        "\n[6] Relatórios" 
-        "\n[7] Sair"
+        "\n[6] Retornar para o menu inicial" 
         )
                   

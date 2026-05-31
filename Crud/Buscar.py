@@ -65,7 +65,7 @@ def buscarProduto():
                     exibirProdutos(resultado)
 
                 case 3:
-                    print("\nRetornando para o menu principal.....")
+                    print("\nRetornando.....")
                     time.sleep(1.5)
                     return
                 

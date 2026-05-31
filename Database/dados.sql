@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS usuarios (
 CREATE TABLE IF NOT EXISTS logs_operacoes (
     id_log INT NOT NULL AUTO_INCREMENT,
     usuario_id INT NOT NULL,
-    operacao VARCHAR(20) NOT NULL,           -- INSERT, UPDATE, DELETE, ACESSO
+    operacao VARCHAR(20) NOT NULL,          
     tabela_afetada VARCHAR(50) NOT NULL,
-    id_registro INT,                          -- ID do registro alterado (ex: id_produto)
+    id_registro INT,                          
     detalhes TEXT,
     data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_log),
@@ -40,9 +40,6 @@ CREATE TABLE IF NOT EXISTS logs_operacoes (
 INSERT INTO usuarios (nome, login, senha_hash, perfil) VALUES
 ('Administrador', 'admin', '$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW', 'admin');
 
--- Opcional: inserir um operador comum (senha = operador123)
-INSERT INTO usuarios (nome, login, senha_hash, perfil) VALUES
-('Operador Padrão', 'operador', '$2b$12$K9LmNpQrStUvWxYzAbCdEfGhIjKlMnOpQrStUvWxYzAbCdEfGhIjK', 'operador');
 
 -- Inserir produtos de exemplo (seus dados originais)
 INSERT INTO produtos (nome, preco, estoque) VALUES

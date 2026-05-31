@@ -101,7 +101,7 @@ def exportar_valor_total_estoque():
     cursor = conexao.cursor()
 
     try:
-        cursor.execute("SELECT id_produto, nome_produto, preco * estoque as valor_total FROM produtos ORDER BY valor_total DESC;")
+        cursor.execute("SELECT nome, preco * estoque as valor_total FROM produtos ORDER BY valor_total DESC;")
         dados = cursor.fetchall()
 
         if not dados:
@@ -124,7 +124,7 @@ def exportar_valor_total_estoque():
 def exportar_logs():
     # Funçaõ para expotar logs
 
-    logs = logs.buscar_todos_logs(limite=100)
+    dados_logs = logs.buscar_todos_logs(limite=100)
     if not logs:
         print("Nenhum log encontrado.")
         return
