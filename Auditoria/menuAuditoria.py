@@ -1,9 +1,11 @@
 import time
 from Relatorio import DadosAnalisticos as estatistica
 from Auditoria import logs
+from csv import exportacao
 
 def menuAuditoria():
     while True:
+        print("-=-=-= MENU AUDITORIA =-=-=\n")
         print("[1] Ver Logs")
         print("[2] Exportar csv")
         print("[3] Relatórios estátisticos")
@@ -19,15 +21,15 @@ def menuAuditoria():
                 case 2:
                     print("Entrando no menu de exportação em csv.....")
                     time.sleep(1.5)
-                    #menuCsv()
-    
+                    exportacao.menuCsv()   
+
                 case 3:
                     print("Entrando no menu de estátisticas.....")
                     time.sleep(1.5)
                     estatistica.menuRelatorio()
                 
                 case 4:
-                    print("Retornando para o menu inicial......")
+                    print("\nRetornando...")
                     time.sleep(1.5)
                     return
 
