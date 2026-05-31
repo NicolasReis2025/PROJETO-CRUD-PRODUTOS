@@ -3,7 +3,7 @@ from mysql.connector import Error
 import time
 
 def verificarConsulta(consulta_sql):
-    # Função para verificar consultar
+# Função para verificar consultar
 
     conexao_sql = db.conectar()
     if conexao_sql is None:
@@ -88,7 +88,7 @@ def listarProdutos():
                     resultado = verificarConsulta(consulta_sql)
                     listarTudo(resultado) 
                 case 5:
-                    print("\nRetornando para o menu inicial.....")
+                    print("\nRetornando.....")
                     time.sleep(1.5)
                     return
                 case _:

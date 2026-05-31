@@ -1,5 +1,7 @@
 from Database import conexao as db
 from mysql.connector import Error
+from Auditoria import auth
+from Auditoria import logs
 import time
 
 def cadastrarProduto():
@@ -41,7 +43,7 @@ def cadastrarProduto():
                     case 1:
                         break
                     case 2:
-                        print("\nVoltando para o menu principal......")
+                        print("\nRetornando......")
                         time.sleep(1.5)
                         return
                     case _:
@@ -71,6 +73,9 @@ def cadastrarProduto():
             if cursor.rowcount == 0:
                 print("Erro ao cadastrar produto")
             else:
+                id_inserido = cursor.lastrowid   # pega o ID gerado
+                detalhes = f"nome: {nome}, preco: {preco:.2f}, estoque: {estoque}"
+                logs.registrar_log(auth.usuario_logado['id'], 'INSERT', 'produtos', id_inserido, detalhes)
                 print("\nProduto cadastrado com sucesso!")
 
         else:

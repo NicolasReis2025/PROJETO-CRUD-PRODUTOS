@@ -1,7 +1,8 @@
 import time
 from Relatorio import DadosAnalisticos as estatistica
 from Auditoria import logs
-from csv import exportacao
+from Auditoria import exportacao
+
 
 def menuAuditoria():
     while True:
