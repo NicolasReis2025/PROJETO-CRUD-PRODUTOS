@@ -125,7 +125,7 @@ def exportar_logs():
     # Funçaõ para expotar logs
 
     dados_logs = logs.buscar_todos_logs(limite=100)
-    if not logs:
+    if not dados_logs:
         print("Nenhum log encontrado.")
         return
 

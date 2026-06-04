@@ -14,6 +14,8 @@ def menuInicial():
             opcao = int(input("\nDigite uma opção: "))
             match opcao:
                 case 1:
+                    print("\nEntrando no menu Principal...")
+                    time.sleep(1.5)
                     menuPrincipal()
 
                 case 2:
