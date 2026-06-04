@@ -117,3 +117,11 @@ def cadastrar_usuario():
         db.desconectar(conexao, cursor)
 
 
+def is_admin():
+    # Função para verificar se o usuário é admin
+    
+    return usuario_logado is not None and usuario_logado.get('perfil') == 'admin'
+
+    
+
+
