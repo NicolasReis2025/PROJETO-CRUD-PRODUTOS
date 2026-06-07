@@ -2,6 +2,7 @@ import bcrypt
 import time
 from Database import conexao as db
 from mysql.connector import Error
+import os
 
 
 usuario_logado = None
@@ -16,15 +17,23 @@ def verificar_acesso():
 
 def fazer_login():
     # função de exibir o menu de login/cadastro e autentica o usuário
+    print("\n" + "="*40)
+    print("      Bem vindo ao sistema de cadastro de produto")
+    print("="*40)
+
+    time.sleep(3)
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
     global usuario_logado
 
     while True:
         print("\n" + "="*40)
-        print("      ACESSO RESTRITO - AUDITORIA")
+        print("      ACESSO INICIAL")
         print("="*40)
         print("[1] Fazer login")
-        print("[2] Cadastrar novo usuário")
-        print("[3] Sair")
+        print("[2] Se cadastrar no sistema")
+        print("[3] Encerrar programa")
         try:
             opcao = int(input("Digite uma opção: "))
             match opcao:
@@ -32,21 +41,26 @@ def fazer_login():
                     usuario_logado = autenticar_usuario()
                     if usuario_logado:
                         print(f"\nBem-vindo, {usuario_logado['nome']}!")
-                        time.sleep(1.5)
+                        time.sleep(2)
                         return True
                     else:
                         print("\nLogin ou senha inválidos. Tente novamente.")
-                        time.sleep(1.5)
+                        time.sleep(2)
+                        os.system('cls' if os.name == 'nt' else 'clear')
 
                 case 2:
                     cadastrar_usuario()
+                    time.sleep(2)
+                    os.system('cls' if os.name == 'nt' else 'clear')
                 
                 case 3:
-                    print("\nRetornando....")
-                    time.sleep(1.5)
-                    return False
+                    print("\nEncerrando....")
+                    time.sleep(1)
+                    return 
+                
                 case _:
                     print("\nERRO: a opção precisar ser um numero entre (1~3)")
+
         except ValueError:
             print("\nEntrada inválida. Digite um número inteiro válido.")
             continue
@@ -77,8 +91,11 @@ def autenticar_usuario():
 
 def cadastrar_usuario():
     # Função de criar um novo usuário
+    
+    print("\n" + "="*40)
+    print("       CADASTRO DE NOVO USUÁRIO")
+    print("\n" + "="*40)
 
-    print("\n-=-=-= CADASTRO DE NOVO USUÁRIO -=-=-=-\n")
     nome = str(input("Nome completo: ")).strip()
     login = str(input("Login (nome de usuário): ")).strip()
     senha = str(input("Senha: ")).strip()

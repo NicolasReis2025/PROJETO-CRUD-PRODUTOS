@@ -28,7 +28,7 @@ def listar_usuarios():
         
         print("\n-=-=-= LISTA DE USUÁRIOS -=-=-=-=")
         for u in resultado:
-            print(f"ID: {u[0]} | Nome: {u[1]} | Login: {u[2]} | Perfil: {u[3]}")
+            print(f"Id: {u[0]} | Nome: {u[1]} | Login: {u[2]} | Perfil: {u[4]}")
     
     except Error as e:
         print(f"Erro: {e}")
@@ -263,6 +263,79 @@ def redefinirSenha():
         db.desconectar(conexao, cursor)
 
 
+def excluir_usuario():
+    #função para remover usuário
+        
+    listar_usuarios()
+
+    print("\n\n---- REMOÇÃO DE USUÁRIO ----\n")
+    try:
+        conexao = db.conectar()
+        cursor = conexao.cursor()
+
+        id_usuario = int(input("\nDigite o id do usuário: "))
+        
+        if id_usuario == auth.usuario_logado['id']:
+            print("\nVocê não pode excluir seu próprio usuário.")
+            return
+        
+        
+        cursor.execute("SELECT id_usuario, nome, login, perfil FROM usuarios WHERE id_usuario = %s;", (id_usuario, ))
+        usuario = cursor.fetchone()
+
+        if not usuario:
+            print("\nEsse id não está cadastrado no banco de dados.")
+            return
+
+        id_alvo, nome_alvo, login_alvo, perfil_alvo = usuario
+
+        
+        if perfil_alvo == "admin":
+            print("\nNão é permitido excluir outro administrador.")
+            return
+
+        print(f"\nId: {id_alvo} | Nome: {nome_alvo} | Login: {login_alvo} | Perfil: {perfil_alvo}")
+
+            
+        print("\nDeseja realmente excluir esse usuário?")
+        while True:
+            try:
+                print("\n[1] Sim\n[2] Não")
+                opcao = int(input("\nDigite uma opção: "))
+                match opcao:
+                    case 1:
+                        cursor.execute("DELETE FROM logs_operacoes WHERE usuario_id = %s", (id_usuario,))
+                        cursor.execute("DELETE FROM usuarios WHERE id_usuario = %s", (id_usuario,))                        
+                        conexao.commit()
+                        if cursor.rowcount == 0:
+                            print("\nErro ao excluir usuário")
+                            print("nenhuma linha afetada")
+                        else:
+                            logs.registrar_log(
+                            auth.usuario_logado['id'],
+                            'DELETE',
+                            'usuarios',
+                            id_usuario,
+                            f"Usuário excluído: nome={nome_alvo}, login={login_alvo}, perfil={perfil_alvo}")
+
+                            print("\nUsuário excluído com sucesso!")
+                        return
+                    case 2:
+                        print("\nRetornando....")
+                        time.sleep(1)
+                        return
+                    case _:
+                        print("\nERRO: a opção precisa ser um numero entre (1 ~ 2)")
+            
+            except ValueError:
+                print("\nERRO: a opção precisa ser um numero inteiro positivo")
+
+    except Error as e:
+        print("\nERRO ao conectar ao banco de dados")
+
+    finally:
+        db.desconectar(conexao, cursor)
+
 
 def menuGerenciamento():
     while True:
@@ -270,22 +343,31 @@ def menuGerenciamento():
         print("[1] Listar usuários")
         print("[2] Alterar usuários")
         print("[3] Redefinir senha")
-        print("[4] Voltar para menu inicial")
+        print("[4] Excluir usuário")
+        print("[5] Voltar para menu inicial")
         try:
             opcao = int(input("Digite uma opção: "))
             match opcao:
                 case 1:
                     listar_usuarios()
+
                 case 2:
                     alterar_perfil()
+
                 case 3:
                     redefinirSenha()
+
                 case 4:
+                    excluir_usuario()
+
+                case 5:
                     print("\nRetornando....")
                     time.sleep(1.5)
                     return
+                
                 case _:
                     print("\nErro: a opção precisa ser um numero entre (1~ 4)")
+
         except ValueError:
             print("\nERRO: a opção precisa ser um numero inteiro válido")
         

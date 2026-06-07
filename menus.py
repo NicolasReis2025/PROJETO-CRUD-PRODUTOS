@@ -18,11 +18,8 @@ def menuInicial():
                     time.sleep(1.5)
                     menuPrincipal()
 
-                case 2:
-                    if not auth.verificar_acesso():
-                        return
-                    
-                    print("Entrando no menu principal....")
+                case 2:     
+                    print("Entrando no menu de auditoria....")
                     time.sleep(1.5)
                     auditoria.menuAuditoria()
 

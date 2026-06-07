@@ -1,4 +1,6 @@
 import menus
+from Auditoria import auth
 
 if __name__ == "__main__":
-    menus.menuInicial()
+    if auth.fazer_login():
+        menus.menuInicial()

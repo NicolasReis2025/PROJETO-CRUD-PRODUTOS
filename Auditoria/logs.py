@@ -67,6 +67,21 @@ def buscar_todos_logs(limite=100):
         db.desconectar(conexao, cursor)
 
 
+
+def exibir_logs_acesso(acessos):
+    # Função de exibir logs de acesso à auditoria (data, usuário, detalhes).
+
+    if not acessos:
+        print("\nNenhum acesso à auditoria registrado.")
+        return
+    print("\n" + "="*60)
+    print(f"{'Data/Hora':<20} {'Usuário':<15} Detalhes")
+    print("="*60)
+    for acesso in acessos:
+        data = acesso[0].strftime("%Y-%m-%d %H:%M:%S") if acesso[0] else ""
+        print(f"{data:<20} {acesso[1]:<15} {acesso[2]}")
+
+
 def buscar_logs_acesso_auditoria():
     # Função que exibe logs de acesso ao menu de auditoria
     
@@ -94,7 +109,7 @@ def buscar_logs_acesso_auditoria():
 
 def menuLogs():
     while True:
-        print("-=-=-= MENU DE LOGS =-=-=-\n")
+        print("\n-=-=-= MENU DE LOGS =-=-=-\n")
         print("[1] Ver logs completos")
         print("[2] Log de acessos à auditoria")
         print("[3] Voltar para menu inicial")
@@ -106,7 +121,8 @@ def menuLogs():
                     exibir_logs(dados)
                             
                 case 2:
-                    buscar_logs_acesso_auditoria()
+                    acesso = buscar_logs_acesso_auditoria()
+                    exibir_logs_acesso(acesso)
                 
                 case 3:
                     print("\nRetornando...")

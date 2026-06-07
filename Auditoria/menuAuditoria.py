@@ -17,6 +17,11 @@ def menuAuditoria():
             opcao = int(input("\nDigite uma opção: "))
             match opcao:
                 case 1:
+                    if not auth.is_admin():
+                        print("\nAcesso negado: somente administradores tem acesso a esse módulo")
+                        time.sleep(1)
+                        continue
+
                     print("Entrando no menu de logs.....")
                     time.sleep(1.5)
                     logs.menuLogs()
@@ -33,10 +38,12 @@ def menuAuditoria():
                 
                 case 4:
                     if not auth.is_admin():
-                        print("\nAcesso negado")
-                        time.sleep(0.8)
+                        print("\nAcesso negado: somente administradores tem acesso a esse módulo")
+                        time.sleep(1)
                         continue
                     
+                    print("\nEntrando no menu de gerenciamento....")
+                    time.sleep(1)
                     gerenciamento.menuGerenciamento()
 
                 case 5:
